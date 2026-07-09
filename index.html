@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KokoRoom</title>
+    <meta name="description" content="Read your rhythm like weather." />
+    <meta property="og:title" content="KokoRoom" />
+    <meta property="og:description" content="Read your rhythm like weather." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/screenshot-today.png" />
+    <link rel="icon" href="assets/app-icon.png" />
+    <style>
+      :root {
+        --text: #353537;
+        --muted: #55565a;
+        --footer: #f3f3f3;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background: #fff;
+      }
+      a { color: inherit; text-decoration: none; }
+      .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .hero {
+        flex: 1;
+        min-height: 72vh;
+        display: grid;
+        grid-template-columns: minmax(280px, 470px) minmax(360px, 520px);
+        align-items: center;
+        justify-content: center;
+        column-gap: clamp(54px, 9vw, 140px);
+        padding: clamp(56px, 8vw, 110px) clamp(24px, 8vw, 120px) clamp(54px, 7vw, 96px);
+      }
+      .brand { animation: rise 0.7s ease both; }
+      .app-icon {
+        width: clamp(92px, 10vw, 132px);
+        height: clamp(92px, 10vw, 132px);
+        display: block;
+        margin-bottom: 26px;
+        border-radius: 28%;
+        filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.09));
+      }
+      .logo {
+        width: clamp(230px, 28vw, 340px);
+        height: auto;
+        display: block;
+        margin-bottom: 14px;
+      }
+      .tagline {
+        margin: 0 0 74px;
+        font-size: clamp(18px, 1.65vw, 22px);
+        line-height: 1.45;
+        color: var(--muted);
+        letter-spacing: -0.02em;
+      }
+      .store-buttons {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .store-button {
+        display: inline-flex;
+        transition: transform 0.18s ease, filter 0.18s ease;
+      }
+      .store-button:hover {
+        transform: translateY(-2px) scale(1.02);
+        filter: brightness(1.05);
+      }
+      .store-button img {
+        height: clamp(52px, 5vw, 68px);
+        width: auto;
+        display: block;
+      }
+      .phones {
+        position: relative;
+        width: min(44vw, 520px);
+        min-width: 360px;
+        height: min(58vw, 660px);
+        max-height: 660px;
+        animation: floatIn 0.85s ease 0.12s both;
+      }
+      .phone {
+        position: absolute;
+        display: block;
+        height: auto;
+        border-radius: 34px;
+        user-select: none;
+        pointer-events: none;
+      }
+      .phone.back {
+        width: 62%;
+        right: 0;
+        top: 0;
+        opacity: 0.45;
+        filter: blur(1.6px) drop-shadow(0 18px 35px rgba(0, 0, 0, 0.08));
+      }
+      .phone.front {
+        width: 63%;
+        left: 3%;
+        top: 8%;
+        filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.10));
+      }
+      .footer {
+        background: var(--footer);
+        padding: 58px clamp(24px, 8vw, 120px) 70px;
+      }
+      .footer-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        font-size: 20px;
+        line-height: 1.55;
+        color: #505155;
+      }
+      .footer strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 20px;
+        color: #44454a;
+      }
+      .footer p { margin: 0 0 22px; }
+      .footer-links {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 42px;
+      }
+      .footer-links a:hover { text-decoration: underline; }
+      .copyright {
+        margin: 0;
+        font-size: 16px;
+        color: #55565a;
+      }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes floatIn {
+        from { opacity: 0; transform: translateY(18px) scale(0.985); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @media (max-width: 900px) {
+        .hero {
+          min-height: auto;
+          grid-template-columns: 1fr;
+          row-gap: 52px;
+          text-align: center;
+          padding-top: 52px;
+        }
+        .app-icon, .logo { margin-left: auto; margin-right: auto; }
+        .tagline { margin-bottom: 36px; }
+        .store-buttons { justify-content: center; }
+        .phones {
+          width: min(82vw, 440px);
+          min-width: 0;
+          height: min(112vw, 560px);
+          margin: 0 auto;
+        }
+        .footer { padding-top: 46px; }
+        .footer-inner { font-size: 17px; }
+        .footer strong { font-size: 18px; }
+        .copyright { font-size: 14px; }
+      }
+      @media (max-width: 480px) {
+        .hero { padding-left: 20px; padding-right: 20px; }
+        .store-buttons { flex-direction: column; gap: 10px; }
+        .store-button img { height: 56px; }
+        .phones { width: 92vw; height: 124vw; }
+        .phone.front { width: 68%; left: 1%; }
+        .phone.back { width: 66%; right: 1%; }
+        .footer-links { flex-wrap: wrap; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero" aria-label="KokoRoom landing hero">
+        <div class="brand">
+          <img class="app-icon" src="assets/app-icon.png" alt="KokoRoom app icon" />
+          <img class="logo" src="assets/logo.png" alt="KokoRoom" />
+          <p class="tagline">Read your rhythm like weather.</p>
+          <div class="store-buttons" aria-label="Download links">
+            <a class="store-button" href="https://docs.google.com/forms/d/e/1FAIpQLScZZ0Hpp-g5fzFIy6cYlVeUpNfqZ1OfLF8amgwhn2pcbat2Xw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
+              <img src="assets/app-store.png" alt="Download on the App Store" />
+            </a>
+            <a class="store-button" href="https://docs.google.com/forms/d/e/1FAIpQLScZZ0Hpp-g5fzFIy6cYlVeUpNfqZ1OfLF8amgwhn2pcbat2Xw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+              <img src="assets/google-play.png" alt="Get it on Google Play" />
+            </a>
+          </div>
+        </div>
+        <div class="phones" aria-hidden="true">
+          <img class="phone back" src="assets/screenshot-analysis.png" alt="" />
+          <img class="phone front" src="assets/screenshot-today.png" alt="" />
+        </div>
+      </section>
+      <footer class="footer">
+        <div class="footer-inner">
+          <strong>Contact us</strong>
+          <p><a href="mailto:aanug@aanug.com">aanug@aanug.com</a></p>
+          <nav class="footer-links" aria-label="Legal links">
+            <a href="https://accessible-magnesium-96f.notion.site/KokoRoom-Terms-of-Service-38f62eef009f80b5b7d7ef9e867973be?source=copy_link" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+            <span>|</span>
+            <a href="https://accessible-magnesium-96f.notion.site/KokoRoom-Privacy-Policy-38f62eef009f8085bdafce546338acf8?source=copy_link" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          </nav>
+          <p class="copyright">© 2026 aanug. All rights reserved.</p>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
