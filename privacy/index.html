@@ -24,6 +24,7 @@
             <p class="eyebrow">LEGAL</p>
             <h1 id="document-title">Privacy Policy</h1>
             <p class="effective-date">Effective date: June 11, 2026</p>
+            <p class="effective-date">Last updated: October 6, 2026</p>
           </header>
 
           <div class="document-body">
@@ -42,6 +43,7 @@
 
               <h3>b. Account backup and restoration</h3>
               <ul>
+                <li>When a User connects Google or Apple sign-in: the provider's account identifier, Firebase uid, and the email address and display name supplied by the provider. Apple may supply a private relay email or no email on a subsequent sign-in. KokoRoom does not receive the User's Google or Apple password.</li>
                 <li>When a User chooses account backup: linked account identifiers and the records and settings included in the backup scope described before linking</li>
                 <li>The backup scope may include health- and sexual activity-related records and is explained separately before the account is linked</li>
               </ul>
@@ -54,6 +56,7 @@
               <h3>d. Partner connection</h3>
               <ul>
                 <li>Your invite code, partner's code, partner's name, connection date, connection status, request/accept/decline/cancel status, requester and recipient uid and name</li>
+                <li>When using the Bench: messages or selected expressions, poke signals, sender and recipient identifiers, sending times, and delivery/read status needed to exchange them with the connected partner</li>
               </ul>
 
               <h3>e. Feedback submission</h3>
@@ -63,7 +66,21 @@
 
               <h3>f. Device and technical information</h3>
               <ul>
-                <li>Identifiers and access/server processing logs for Firebase Auth, Firestore, Messaging, and Cloud Functions</li>
+                <li>Identifiers and access/server processing logs for Firebase Auth, Firestore, Messaging, Cloud Functions, Installations, App Check, and Remote Config; app and OS version, device information, language, network/IP information, and error or verification results needed for security, configuration, notifications, and troubleshooting</li>
+              </ul>
+
+              <h3>g. KokoRoom+ purchases and restoration</h3>
+              <ul>
+                <li>Store, product and transaction/order identifiers, purchase tokens or signed transaction information, purchase and expiration times, subscription or refund status, and the linked KokoRoom uid are processed to verify purchases, restore access, prevent duplicate claims, and provide the connected partner's benefits.</li>
+                <li>Apple App Store or Google Play handles payment. KokoRoom does not receive payment card numbers or bank account details.</li>
+              </ul>
+
+              <h3>h. Usage analytics</h3>
+              <ul>
+                <li>Google Analytics for Firebase processes app-instance/device identifiers, device and OS information, app version, language, approximate region derived from network information, and app activity such as launches, screen views, sessions, and feature interactions. The SDK may also collect in-app purchase product, price, and currency information. On Android it may collect the advertising identifier when available under device settings.</li>
+                <li>This information helps us understand onboarding and feature use and improve the Service. Our custom analytics events do not include health records, cycle dates, memo contents, names, dates of birth, email addresses, or KokoRoom account identifiers. Technical identifiers and purchase metadata mean this collection is not described as fully anonymous.</li>
+                <li>We do not use these analytics to target advertisements or sell personal information. Google Signals and Google Ads linking are not enabled. Google may process aggregated and de-identified measurements for benchmarking and modeling, and access analytics data to provide technical support under the configured service settings.</li>
+                <li>Analytics event-level data is configured for 2 months and user-level data for 14 months, with the user period renewed on new activity. Aggregated reports are not subject to these same periods. Device advertising/privacy settings control availability of advertising identifiers.</li>
               </ul>
 
               <h3>Retention period</h3>
@@ -71,6 +88,7 @@
                 <li>In principle, personal information is retained until withdrawal or a request for account and data deletion</li>
                 <li>Records and settings stored through account backup remain on the server even if the account is disconnected from a device, and are retained until they are deleted through the account and data deletion process or another applicable deletion condition occurs</li>
                 <li>Customer inquiry and feedback records, data subject to statutory retention periods, and backups/logs are retained for their respective required periods</li>
+                <li>Account deletion does not automatically erase the separate purchase-verification ledger or the minimal deletion marker used to prevent an old login token from recreating a deleted account. These are retained for purchase ownership, fraud prevention, and deletion safety; contact us to request review or deletion where applicable. Store-held transactions are also subject to Apple's or Google's own retention rules.</li>
               </ul>
             </section>
 
@@ -92,7 +110,8 @@
 
             <section class="document-section" id="section-4">
               <h2>4. Outsourcing and Overseas Transfer of Personal Information</h2>
-              <p>The Company uses Google Firebase and Google Cloud (Firestore, Messaging, Cloud Functions) to operate the Service, including server processing necessary for supported account backup and restoration, and feedback data is delivered via Slack. As a result, personal information may be stored and processed on servers located outside Korea.</p>
+              <p>The Company uses Google Firebase and Google Cloud (including Authentication, Firestore, Messaging, Cloud Functions, Installations, App Check, Remote Config, and Google Analytics for Firebase) to operate, secure, and analyze the Service, including supported account backup and restoration. Feedback data is delivered via Slack. Apple and Google process sign-in and store purchases when those features are used. As a result, personal information may be stored and processed on servers located outside Korea.</p>
+              <p>Service providers process information for the functions described above. Partner sharing is initiated by the User and limited to the applicable connection and sharing choices. Transport to our online services is encrypted; account-linked server backups are not represented as anonymous or end-to-end encrypted.</p>
             </section>
 
             <section class="document-section" id="section-5">
@@ -105,6 +124,12 @@
             <section class="document-section" id="section-6">
               <h2>6. User Rights</h2>
               <p>Users may request to view, correct, or delete their personal information, or withdraw consent, at any time. Users who use account backup may also delete the linked account and server-stored backup data through the account and data deletion process provided by the Service. Disconnecting an account from a device alone does not constitute a request to delete server-stored backup data.</p>
+              <div id="deletion">
+                <h3>Request account or data deletion</h3>
+                <p>In KokoRoom, open Settings, select your profile (My Info), and choose Delete Account. Follow the confirmation and account verification steps. This removes the account and its server backup, profile, partner connection, and associated shared records and Bench data. The purchase ledger and security deletion marker described above are exceptions.</p>
+                <p>You may also email <a href="mailto:aanug@aanug.com?subject=KokoRoom%20data%20deletion%20request">aanug@aanug.com</a> to request deletion of your KokoRoom account or specific data without deleting the account. Specify which option you want and your sign-in provider or account email so we can verify ownership. Do not send passwords, verification codes, payment card details, or health records. We will verify the request and explain any information that must be retained and the applicable reason.</p>
+                <p>Deleting the app or signing out does not delete the server account. Account deletion does not cancel an App Store or Google Play subscription; manage or cancel subscriptions in the store separately.</p>
+              </div>
             </section>
 
             <section class="document-section" id="section-7">
@@ -124,6 +149,7 @@
             <section class="document-section" id="section-8">
               <h2>8. Effective Date</h2>
               <p>This Privacy Policy takes effect on June 11, 2026.</p>
+              <p>The October 6, 2026 update clarifies existing account sign-in and backup, KokoRoom+ purchase verification, Bench communication, analytics, and deletion handling for version 1.1.0. It does not introduce additional app permissions or data collection.</p>
               <dl class="document-details">
                 <div>
                   <dt>Service</dt>
