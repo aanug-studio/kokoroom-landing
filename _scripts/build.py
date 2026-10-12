@@ -3,6 +3,7 @@ from pathlib import Path
 from html import escape
 import json
 import re
+import hashlib
 
 ROOT = Path(__file__).resolve().parents[1]
 UI = json.loads((ROOT / '_content/ui.json').read_text())
@@ -18,7 +19,8 @@ def menu(locale, page):
         '<li><a data-language="' + language + '" href="' + path(language, page) + '" lang="' + UI[language]['lang'] + '" hreflang="' + UI[language]['lang'] + '"' + (' aria-current="true"' if language == locale else '') + '>' + UI[language]['name'] + '</a></li>'
         for language in LANGUAGES
     )
-    return '<nav class="language-nav" aria-label="' + current['language'] + '"><details class="language-menu"><summary><span class="language-label">' + current['language'] + '</span> ' + current['name'] + '</summary><ul>' + links + '</ul></details></nav>'
+    chevron = '<svg class="language-chevron" viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false"><path d="m5.5 7.75 4.5 4.5 4.5-4.5" /></svg>'
+    return '<nav class="language-nav" aria-label="' + current['language'] + '"><details class="language-menu"><summary><span class="language-label">' + current['language'] + '</span><span>' + current['name'] + '</span>' + chevron + '</summary><ul>' + links + '</ul></details></nav>'
 
 def build(locale, page, generic=False):
     ui = UI[locale]
@@ -47,12 +49,11 @@ def build(locale, page, generic=False):
         footer = footer.replace('>Contact<', '>' + ui['contact'] + '<').replace('>Terms of Service<', '>' + ui['terms'] + '<').replace('>Privacy Policy<', '>' + ui['privacy'] + '<')
         template = before + '      <footer' + footer
     else:
-        template = template.replace('Read your rhythm like weather.', ui['tagline'])
+        template = template.replace('{{tagline}}', escape(ui['tagline'])).replace('{{description}}', escape(ui['description'], quote=True))
         template = template.replace('KokoRoom landing hero', ui['hero']).replace('KokoRoom app icon', ui['icon']).replace('Download links', ui['downloads'])
         template = template.replace('Download on the App Store', ui['apple']).replace('Get it on Google Play', ui['google'])
         template = template.replace('>Contact us<', '>' + ui['contactUs'] + '<').replace('>Terms of Service<', '>' + ui['terms'] + '<').replace('>Privacy Policy<', '>' + ui['privacy'] + '<')
         template = template.replace('    <main class="page">', '    <main class="page">\n<header class="home-header">' + menu(locale, page) + '</header>')
-    template = template.replace('All rights reserved.', ui['copyright'])
     for destination in ['privacy', 'terms', '']:
         original = '/' + (destination + '/' if destination else '')
         template = template.replace('href="' + original + '"', 'href="' + path(locale, destination) + '"')
@@ -63,6 +64,10 @@ def build(locale, page, generic=False):
     metadata += '<link rel="alternate" hreflang="x-default" href="' + ORIGIN + '/' + (page + '/' if page else '') + '" />\n'
     metadata += '<link rel="stylesheet" href="/assets/site.css" />\n<script src="/assets/site.js" defer></script>\n'
     template = template.replace('  </head>', metadata + '  </head>')
+    # New HTML must not pick up an older cached style after a Pages deployment.
+    for asset in re.findall(r'href="(/assets/[^"?]+\.css)"', template):
+        version = hashlib.sha256((ROOT / asset[1:]).read_bytes()).hexdigest()[:10]
+        template = template.replace('href="' + asset + '"', 'href="' + asset + '?v=' + version + '"')
     target = ROOT / (page if generic else locale + ('/' + page if page else '')) / 'index.html'
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(template)

@@ -10,7 +10,9 @@ and English (`en`).
 - `_content/`: complete translated privacy/terms bodies and shared UI copy.
 - `_templates/`: the original landing and legal page layouts.
 - `assets/site.js`: language routing and a local language preference only.
-- `assets/site.css`: shared navigation and responsive adjustments.
+- `assets/site.css`: KokoRoom colors, shared navigation and responsive adjustments.
+- `assets/home.css`: Apple-inspired product layout and compact footer.
+- `DESIGN.md`: installed Apple reference with the user's KokoRoom overrides.
 - Generated HTML and `sitemap.xml` are checked in for static hosting.
 
 After changing a source, regenerate and validate with Python 3 and Node.js:
@@ -52,3 +54,16 @@ event data, fourteen months for user data, renewed on new activity. Do not claim
 that a proposed reduction has been applied without verifying the live setting.
 Existing service terms, account deletion and store subscription instructions
 are preserved; the new language versions do not expand collection permissions.
+
+## Brand and copy
+
+The October 12 visual update uses `npx getdesign@latest add apple`
+(getdesign 0.6.25) as a design reference. KokoRoom's green, charcoal, white and
+gray palette takes precedence over Apple's blue. The app logo, screenshots,
+store badges, policy text and routes remain in place.
+
+The product helps people record their cycle alongside daily body and mind
+conditions and understand their own rhythms. The Korean hero asks
+“오늘 컨디션 왜 이럴까?”; other languages ask the same everyday question.
+The copyright line stays `© 2026 aanug. All rights reserved.` in every locale.
+CSS links include a content hash so updated HTML loads matching styles.

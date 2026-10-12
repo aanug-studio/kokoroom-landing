@@ -22,7 +22,9 @@ class Document(HTMLParser):
         if tag in ['img','script'] and 'src' in attrs:self.assets.append(attrs['src'])
         if tag=='link' and attrs.get('rel') in ['stylesheet','icon']:self.assets.append(attrs['href'])
         if tag not in ['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']:self.stack.append(tag)
-    def handle_startendtag(self,tag,attrs):self.handle_starttag(tag,attrs)
+    def handle_startendtag(self,tag,attrs):
+        self.handle_starttag(tag,attrs)
+        if self.stack and self.stack[-1]==tag:self.handle_endtag(tag)
     def handle_endtag(self,tag):
         assert self.stack and self.stack[-1]==tag,(tag,self.stack[-4:])
         self.stack.pop()
@@ -36,7 +38,7 @@ for p,d in parsed.items():
     assert d.lang in [x['lang'] for x in UI.values()],p
     for asset in d.assets:
         assert asset.startswith('/assets/'),(p,asset)
-        assert (ROOT/asset[1:]).is_file(),(p,asset)
+        assert (ROOT/urlsplit(asset).path[1:]).is_file(),(p,asset)
     for href in d.links:
         u=urlsplit(href)
         if u.scheme or u.netloc:continue

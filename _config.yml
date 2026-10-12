@@ -4,3 +4,5 @@ exclude:
   - _templates
   - _scripts
   - README.md
+  - DESIGN.md
+  - DESIGN-LICENSE
