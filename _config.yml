@@ -1,0 +1,6 @@
+# Publish generated documents, not source copies of legal notices.
+exclude:
+  - _content
+  - _templates
+  - _scripts
+  - README.md
